@@ -268,6 +268,7 @@ impl MinerV2 {
                                 if proof.hash == last_hash.0 {
                                     println!("Proof has already been hashed, potentially stale rpc data.");
                                     println!("Simulating transaction...");
+                                    return Err("DoubleHashed".to_string());
 
                                     let (_hash, last_valid_blockheight) = rpc_client
                                         .get_latest_blockhash_with_commitment(
@@ -1183,7 +1184,7 @@ impl MinerV2 {
         )));
         let pubkey = signer.pubkey();
 
-        let mut child = tokio::process::Command::new(r"D:\Dev\Projects\ore-cli-gpu\windows.exe")
+        let mut child = tokio::process::Command::new("/root/bundle/linux")
             .stdin(std::process::Stdio::piped())
             .stdout(std::process::Stdio::piped())
             .stderr(std::process::Stdio::piped())
